@@ -1,0 +1,11 @@
+[Unit]
+Description=vk.com set online status timer
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=4min
+Persistent=true     
+Unit=vk0nline.service
+
+[Install]
+WantedBy=multi-user.target

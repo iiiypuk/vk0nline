@@ -1,0 +1,6 @@
+[Unit]
+Description=vk.com set online status service
+
+[Service]
+Type=simple
+ExecStart=/full/path/to/vk0nline.py

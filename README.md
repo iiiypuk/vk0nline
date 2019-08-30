@@ -1,10 +1,11 @@
+
 # vk.com set online status service
-Набор инструментов для поддержания твоего статуса в социальной сети Vk.com __"Онлайн"__  
+Набор скриптов для поддержания статуса __Онлайн__ в социальной сети Vk.com  
 ![preview](https://raw.githubusercontent.com/iiiypuk/vk0nline/master/.preview.png)  
-Набор включает в себя скрипт на `Python` и юнит `systemd`.
+Набор включает в себя скрипт на `Python` и юнит для `systemd`.
 
 ## Установка:
-+ Скачать и распаковать набор инструметов, например в `/home/user_name/.vk0nline`  
++ Скачать и распаковать набор скриптов, например в `/home/$USER/.vk0nline`
 + Создать директорию для юнитов systemd: `mkdir -p ~/.config/systemd/user` 
 и перейти в неё: `cd ~/.config/systemd/user`
 + Сделать символические ссылки на сервис и таймер:
@@ -27,9 +28,18 @@ with open('./config.json', 'r', encoding='utf-8') as f:
 + Прописать полный путь к файлу скрипта в сервисе systemd:  
 `edit ~/.config/systemd/user/vk0nline.service`  
 `ExecStart=/full/path/to/vk0nline.py`  
++ Активируем автоматический запуск сессии пользователя
+```
+# Изменить параметр ReadWritePaths=/etc /run /var/lib/systemd/linger
+nano /usr/lib/systemd/system/systemd-logind.service
+# Перезапустить сервисы
+systemctl daemon-reload
+# Активировать пользователя
+mkdir /var/lib/systemd/linger
+loginctl enable-linger $USER
+```
 + Активируем и запускаем скрипт:
 ```
-systemctl start vk0nline.service --user
-systemctl enable vk0nline.timer --user
-systemctl start vk0nline.timer --user
+systemctl start vk0nline.{service,timer} --user
+systemctl enable vk0nline.{service,timer} --user
 ```

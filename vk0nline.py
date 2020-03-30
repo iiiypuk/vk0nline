@@ -4,13 +4,13 @@ import json
 import requests
 from datetime import datetime
 import getpass
-
+import sys
 
 __author__ = 'Alexander Popov'
 __copyright__ = '2019 by iiiypuk'
 __credits__ = ['Alexander Popov']
 __license__ = 'Unlicense'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __maintainer__ = 'Alexander Popov'
 __email__ = 'iiiypuk@fastmail.fm'
 __status__ = 'Production'
@@ -54,11 +54,15 @@ def setOnline():
             print('Error: {}.'.format(content['error']['error_code']))
     elif 'response' in content:
         if 1 == content['response']:
-            print('Ok!')
             onlineStatus, lastSeen = getStatus()
             lastSeen = datetime.fromtimestamp(lastSeen) \
                 .strftime('%Y-%m-%d %H:%M:%S')
-            print(onlineStatus, lastSeen)
+
+            if 0 == onlineStatus:
+                print('Not successful.')
+                sys.exit(1)
+
+            print('Last online', lastSeen)
 
 
 if __name__ == "__main__":

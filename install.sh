@@ -20,7 +20,7 @@ else
 fi
 
 cd /home/$USER/.local/share/emilecok/vk0nline
-sed "s/USERNAME/$USER/" ./systemd/user/vk0nline.service &> /dev/null
+sed -i "s/USERNAME/$USER/" ./systemd/user/vk0nline.service &> /dev/null
 chmod 755 ./vk0nline.py
 cp -p ./config.json.example /home/$USER/.config/emilecok/vk0nline/config.json &> /dev/null
 
@@ -34,10 +34,10 @@ ln -s /home/$USER/.local/share/emilecok/vk0nline/systemd/user/vk0nline.timer . &
 echo Installation complete.
 echo
 echo Start script, authorize and save access token
-echo :: python /home/$USER/.config/emilecok/vk0nline/
+echo :: python /home/$USER/.local/share/emilecok/vk0nline/vk0nline.py
 echo 
 echo Edit configuration file
-echo :: by ./home/$USER/.local/share/emilecok/vk0nline/vk0nline.py
+echo :: by /home/$USER/.config/emilecok/vk0nline/config.json
 echo
 echo And start \& activate systemd services
 echo :: systemctl start vk0nline.\{service,timer\} --user

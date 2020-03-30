@@ -1,6 +1,6 @@
 # service for set status online on vk.com
 Скрипт для поддержания статуса __Онлайн__ в социальной сети Vk.com  
-включает в себя `Python` скрипт `systemd` юнит.
+включает в себя `Python` скрипт `systemd` юнит.  
 ![preview](https://raw.githubusercontent.com/iiiypuk/vk0nline/master/asset/.preview.png)  
 
 ## Установка:

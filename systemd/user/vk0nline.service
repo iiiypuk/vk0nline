@@ -1,9 +1,10 @@
 [Unit]
 Description=vk.com set online status service
+After=network.target network-online.target nss-lookup.target
 
 [Service]
 Type=simple
-ExecStart=/full/path/to/vk0nline.py
+ExecStart=/home/USERNAME/.local/share/emilecok/vk0nline/vk0nline.py
 
 [Install]
 WantedBy=default.target

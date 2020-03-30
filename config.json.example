@@ -2,6 +2,5 @@
   "clientId": 1,
   "secureKey": "",
   "serviceKey": "",
-  "accessToken": "",
-  "userIds": ""
+  "accessToken": ""
 }

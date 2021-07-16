@@ -1,36 +1,56 @@
 require "json"
 require "crest"
 
-# TODO: Write documentation for `Src`
-module Src
-  VERSION = "0.1.0"
-
+begin # JSON::ParseException
   json = File.open("config.json") do |file|
     JSON.parse(file)
   end
+rescue
+  puts "Parse config.json error"
 
-  # TODO: Get accessToken
-  if json["accessToken"] == nil
-    puts "Get accessToken"
+  exit
+end
 
-    token_url = "https://oauth.vk.com/authorize?client_id=#{json["appID"].as_i}&redirect_uri=vk.com&response_type=token&display=mobile&v=5.131&revoke=1&state=01010&scope=offline"
+def get_access_token(appId : Int32)
+  puts "Open this page, and save token to config.json\n\n"
 
-    puts token_url
+  token_url = "https://oauth.vk.com/authorize?client_id="\
+  "#{appId}&redirect_uri=vk.com&response_type=token"\
+  "&display=mobile&v=5.131&revoke=1&state=01010&scope=offline"
 
-    puts "Open this page, and save token to config.json"
-  else
-    # TODO: If return 1 == COMPLETE
-    response = Crest.get(
-      "https://api.vk.com/method/account.setOnline",
-      params: { :voip => "0", :v => "5.131",
-        :access_token => json["accessToken"].as_s,
-        :user_ids => json["userIds"].as_i }
-    )
+  puts token_url
+end
 
-     status = JSON.parse(response.body)
+if json["accessToken"] == nil
+  get_access_token(json["appID"].as_i)
+else
+  response = Crest.get(
+    "https://api.vk.com/method/account.setOnline",
+    params: { :voip => "0", :v => "5.131",
+      :access_token => json["accessToken"].as_s,
+      :user_ids => json["userIds"].as_i }
+  )
 
-     if status["response"] == 1
+  status = JSON.parse(response.body)
+
+  begin # Missing hash key
+    if status["error"]
+      puts status["error"]["error_msg"]
+      puts "Error code #{status["error"]["error_code"]}"
+
+      puts "---"
+
+      get_access_token(json["appID"].as_i)
+    end
+    rescue
+      # execute if an exception is raised
+  end
+
+  begin # Missing hash key
+    if status["response"] == 1
       puts "Complete!"
-     end
+    end
+  rescue
+    # execute if an exception is raised
   end
 end

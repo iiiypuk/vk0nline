@@ -3,7 +3,7 @@
 
 Включает в себя `systemd` юнит.
 
-![preview](https://raw.githubusercontent.com/iiiypuk/vk0nline/master/asset/.preview.png)
+![preview](https://raw.githubusercontent.com/iiiypuk/vk0nline/master/.preview.png)
 
 ## Установка
 Активировать автоматический запуск сессии пользователя

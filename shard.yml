@@ -1,0 +1,17 @@
+name: vk0nline
+version: 2.0.0
+
+authors:
+  - Alexander Popov <iiiypuk@iiiypuk.me>
+
+targets:
+  src:
+    main: src/src.cr
+
+dependencies:
+  crest:
+    github: mamantoha/crest
+
+crystal: 1.0.0
+
+license: MIT

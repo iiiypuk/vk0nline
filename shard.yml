@@ -6,12 +6,12 @@ authors:
 
 targets:
   src:
-    main: src/src.cr
+    main: src/vk0nline.cr
 
 dependencies:
   crest:
     github: mamantoha/crest
 
-crystal: 1.0.0
+crystal: 1.1.1
 
 license: MIT

@@ -6,7 +6,7 @@
 ![preview](https://raw.githubusercontent.com/iiiypuk/vk0nline/master/.preview.png)
 
 ## Установка
-Активировать автоматический запуск сессии пользователя
+Активировать автоматический запуск сессии пользователя, если будет использовться **systemd**
 ```bash
 # Изменить параметр ReadWritePaths=/etc /run /var/lib/systemd/linger
 nano /usr/lib/systemd/system/systemd-logind.service
@@ -15,21 +15,25 @@ systemctl daemon-reload
 # Активировать пользователя
 mkdir /var/lib/systemd/linger
 loginctl enable-linger $USER
-
-Подготавливаем рабочую директорию
-mkdir -p /home/$USER/.local/share/emilecok/vk0nline/
-wget https://github.com/iiiypuk/vk0nline/blob/master/config.json.example -O /home/$USER/.local/share/emilecok/vk0nline/config.json
-wget $BINARY -O /home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
-chmod +x /home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
-
-# Заполняем конфигурационный файл, поля appID и userIds
-vi /home/$USER/.local/share/emilecok/vk0nline/config.json
-
-# Запускаем, получаем accessToken и запускаем ещё раз
-/home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
 ```
 
-## Systemd
+Подготовка рабочей директории
+```bash
+mkdir -p /home/$USER/.local/share/emilecok/
+cd /home/$USER/.local/share/emilecok/
+wget https://github.com/iiiypuk/vk0nline/releases/download/2.0.0/vk0nline-2.0.0-x86-64.tar.xz
+tar -xf vk0nline-*.tar.xz
+cd vk0nline/
+
+# Заполняем конфигурационный файл, поля appID и userIds
+cp config.json.example config.json
+vi config.json
+
+# Запускаем, получаем accessToken и запускаем ещё раз
+./vk0nline.x86_64-lnx
+```
+
+Systemd
 ```bash
 ...
 ```

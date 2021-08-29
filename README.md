@@ -7,7 +7,7 @@
 
 ## Установка
 Активировать автоматический запуск сессии пользователя
-```console
+```bash
 # Изменить параметр ReadWritePaths=/etc /run /var/lib/systemd/linger
 nano /usr/lib/systemd/system/systemd-logind.service
 # Перезапустить сервисы
@@ -15,32 +15,21 @@ systemctl daemon-reload
 # Активировать пользователя
 mkdir /var/lib/systemd/linger
 loginctl enable-linger $USER
+
+Подготавливаем рабочую директорию
+mkdir -p /home/$USER/.local/share/emilecok/vk0nline/
+wget https://github.com/iiiypuk/vk0nline/blob/master/config.json.example -O /home/$USER/.local/share/emilecok/vk0nline/config.json
+wget $BINARY -O /home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
+chmod +x /home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
+
+# Заполняем конфигурационный файл, поля appID и userIds
+vi /home/$USER/.local/share/emilecok/vk0nline/config.json
+
+# Запускаем, получаем accessToken и запускаем ещё раз
+/home/$USER/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
 ```
 
-Скачать и запустить установщик:
-```console
-curl -Lsk https://raw.githubusercontent.com/iiiypuk/vk0nline/master/install.sh | sh
+## Systemd
+```bash
+...
 ```
-
-Следовать инструкциям установщика.
-
-## Использование
-* Скачать исполняемый файл программы
-* Заполнить `appID` и `userIds` в `config.json`
-* Запустить программу `vk0nline` и получить `accessToken`
-
-## Development
-
-TODO: Write development instructions here
-
-## Contributing
-
-1. Fork it (<https://github.com/your-github-user/src/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## Contributors
-
-- [Alexander Popov](https://github.com/iiiypuk) - creator and maintainer

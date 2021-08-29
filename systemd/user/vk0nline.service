@@ -4,7 +4,7 @@ After=network.target network-online.target nss-lookup.target
 
 [Service]
 Type=simple
-ExecStart=/home/USERNAME/.local/share/emilecok/vk0nline/vk0nline.py
+ExecStart=/home/USERNAME/.local/share/emilecok/vk0nline/vk0nline.x86_64-lnx
 
 [Install]
 WantedBy=default.target

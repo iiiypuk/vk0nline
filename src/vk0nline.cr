@@ -11,11 +11,11 @@ rescue
   exit
 end
 
-def get_access_token(appId : Int32)
+def get_access_token(app_id : Int32)
   puts "Open this page, and save token to config.json\n\n"
 
   token_url = "https://oauth.vk.com/authorize?client_id="\
-  "#{appId}&redirect_uri=vk.com&response_type=token"\
+  "#{app_id}&redirect_uri=vk.com&response_type=token"\
   "&display=mobile&v=5.131&revoke=1&state=01010&scope=offline"
 
   puts token_url

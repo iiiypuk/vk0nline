@@ -46,7 +46,7 @@ else
       # execute if an exception is raised
   end
 
-  begin # Missing hash key
+  begin # Status set
     if status["response"] == 1
       puts "Complete!"
     end
